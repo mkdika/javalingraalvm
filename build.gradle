@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.4"
+    }
+}
+
+plugins {
+    id 'org.unbroken-dome.test-sets' version '2.1.1'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.31'
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+group 'com.mkdika'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'com.mkdika.javalingraalvm.JavalinGraalvmApplicationKt'
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "io.javalin:javalin:2.8.0"
+    implementation "org.slf4j:slf4j-simple:1.7.26"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
+    implementation "org.graalvm.sdk:graal-sdk:1.0.0-rc16"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
